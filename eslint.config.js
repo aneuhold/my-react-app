@@ -1,23 +1,9 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import reactConfig from '@aneuhold/eslint-config/src/react-config.js';
 
-export default tseslint.config([
-  globalIgnores(['dist']),
+/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} */
+export default [
+  ...reactConfig,
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-  },
-])
+    // other override settings. e.g. for `files: ['**/*.test.*']`
+  }
+];
